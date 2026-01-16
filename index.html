@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои Работы | Скачать</title>
+    <!-- Шрифт Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Иконки (FontAwesome) для логотипов дисков -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- НАСТРОЙКИ ДИЗАЙНА (SP WORLDS VIBE) --- */
+        :root {
+            --bg-main: #09090b;       /* Основной фон */
+            --bg-card: #121215;       /* Фон карточек */
+            --bg-card-hover: #1c1c21; /* Фон карточки при наведении */
+            
+            --primary: #7c3aed;       /* Фиолетовый акцент */
+            --primary-glow: rgba(124, 58, 237, 0.5);
+            
+            --google-color: #4285F4;  /* Цвет Google */
+            --yandex-color: #fc3f1d;  /* Цвет Яндекс (красно-оранжевый) */
+            
+            --text-white: #ffffff;
+            --text-grey: #a1a1aa;
+            --border: #27272a;
+            
+            --radius-card: 24px;
+            --radius-btn: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            /* Фоновый атмосферный градиент */
+            background-image: radial-gradient(circle at 50% -20%, #2e1065 0%, #09090b 50%);
+            background-attachment: fixed;
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+
+        /* --- ШАПКА --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+
+        /* --- ОСНОВНОЙ КОНТЕЙНЕР --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .hero-desc {
+            text-align: center;
+            color: var(--text-grey);
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- СЕТКА ПРОЕКТОВ --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- КАРТОЧКА ПРОЕКТА --- */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Верхняя часть карточки с иконкой и заголовком */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), #4c1d95);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .project-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: var(--text-grey);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card-desc {
+            color: var(--text-grey);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            flex-grow: 1; /* Чтобы кнопки всегда были внизу */
+        }
+
+        /* --- КНОПКИ СКАЧИВАНИЯ --- */
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            background: rgba(255,255,255,0.03);
+            color: var(--text-white);
+            border-color: var(--border);
+        }
+
+        /* Стили для кнопки Google */
+        .btn-google:hover {
+            background: rgba(66, 133, 244, 0.15);
+            border-color: var(--google-color);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(66, 133, 244, 0.2);
+        }
+        .btn-google i { color: var(--google-color); }
+
+        /* Стили для кнопки Яндекс */
+        .btn-yandex:hover {
+            background: rgba(252, 63, 29, 0.15);
+            border-color: var(--yandex-color);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(252, 63, 29, 0.2);
+        }
+        .btn-yandex i { color: var(--yandex-color); }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-grey);
+            margin-top: 60px;
+        }
+
+        /* Адаптив для телефонов */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2rem; }
+            .container { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-cube" style="color: var(--primary);"></i>
+            <span>MaxVanila</span>
+        </div>
+        <!-- Ссылки на соцсети -->
+        <div style="display: flex; gap: 20px;">
+            <a href="https://t.me/qMoZGi" style="color: var(--text-grey);"><i class="fa-brands fa-telegram fa-lg"></i></a>
+            <a href="https://vk.com/maxvanila" style="color: var(--text-grey);"><i class="fa-brands fa-vk fa-lg"></i></a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h1 class="hero-title">Библиотека Ссылок</h1>
+        <p class="hero-desc">Здесь собраны мои проекты, моды, скрипты и дизайны и т.п. Выберите удобный способ загрузки.</p>
+
+        <div class="projects-grid">
+            
+            <!-- === ПРОЕКТ 1 === -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>My bio</h3>
+                        <span class="badge">ZIP • 307 КB</span>
+                    </div>
+                </div>
+                <p class="card-desc">
+                    Моё био написанное через AI
+                </p>
+                <div class="download-buttons">
+                    <!-- Замени # на свои ссылки -->
+                    <a href="https://github.com/MoZGiq/my_bio" target="_blank" class="btn btn-google">
+                        <i class="fa-brands fa-google-drive"></i> Google Drive
+                    </a>
+                    <a href="https://github.com/MoZGiq/my_bio" target="_blank" class="btn btn-yandex">
+                        <i class="fa-brands fa-yandex"></i> Яндекс Диск
+                    </a>
+                </div>
+            </article>
+
+            <!-- === ПРОЕКТ 2 === -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Этот сайт.</h3>
+                        <span class="badge">ZIP • 5 MB</span>
+                    </div>
+                </div>
+                <p class="card-desc">
+                    Этот сайт написанный И.И. для подтверждения того что они могут.
+                </p>
+                <div class="download-buttons">
+                    <a href="https://github.com/MoZGiq/my_siteAi" target="_blank" class="btn btn-google">
+                        <i class="fa-brands fa-google-drive"></i> Google Drive
+                    </a>
+                    <a href="https://github.com/MoZGiq/my_siteAi" target="_blank" class="btn btn-yandex">
+                        <i class="fa-brands fa-yandex"></i> Яндекс Диск
+                    </a>
+                </div>
+            </article>
+
+            <!-- === ПРОЕКТ 3 === -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Возможно ещё 1 проэкт</h3>
+                        <span class="badge">ZIP • ? КB</span>
+                    </div>
+                </div>
+                <p class="card-desc">
+                    Наверное будет ещё 1 проэкт, но это не точно.
+                </p>
+                <div class="download-buttons">
+                    <a href="#" target="_blank" class="btn btn-google">
+                        <i class="fa-brands fa-google-drive"></i> Google Drive
+                    </a>
+                    <a href="#" target="_blank" class="btn btn-yandex">
+                        <i class="fa-brands fa-yandex"></i> Яндекс Диск
+                    </a>
+                </div>
+            </article>
+
+            <!-- === ПРОЕКТ 4 === -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="project-icon">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Plagins написанные тоже на И.И.</h3>
+                        <span class="badge">ZIP • 1000 КБ</span>
+                    </div>
+                </div>
+                <p class="card-desc">
+                    Все дороги ведут в телеграмм
+                </p>
+                <div class="download-buttons">
+                    <a href="https://t.me/+d8NI7tQlPys2YmJi" target="_blank" class="btn btn-google">
+                        <i class="fa-brands fa-google-drive"></i> Google Drive
+                    </a>
+                    <a href="https://t.me/+d8NI7tQlPys2YmJi" target="_blank" class="btn btn-yandex">
+                        <i class="fa-brands fa-yandex"></i> Яндекс Диск
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MyWorks. Design inspired by SP Worlds.</p>
+    </footer>
+
+</body>
+</html>
